@@ -13,6 +13,11 @@ app.get('/', function(req, res){
 
 // test
 app.post('/test', function(req, res) {
+    console.log(process.env.CHANNEL_ID);
+    console.log(process.env.CHANNEL_SECRET);
+    console.log(process.env.MID);
+    console.log(process.env.PORT);
+
     var param = req.body.param;
     res.json({
         param: param,
@@ -24,8 +29,10 @@ app.post('/test', function(req, res) {
 app.post('/callback', function(req, res) {
     var body = req.body;
 
-    var content = body.result[0].content
+    var content = body.result[0].content;
     var text = content.text;
+    console.log('message received:' + text);
+
     var sendText = text + 'にゃんぺろ〜！';
 
     //ヘッダーを定義
