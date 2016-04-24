@@ -33,7 +33,23 @@ app.post('/callback', function(req, res) {
     var text = content.text;
     console.log('message received:' + text);
 
-    var sendText = text + 'にゃんぺろ〜！';
+    var sendContent;
+    if (!!~text.indexOf('ブレイブ')) {
+        // 画像
+        sendContent = {
+            contentType: 2,
+            toType: 1,
+            originalContentUrl: 'https://www.cyberagent.co.jp/files/topics/9665_ext_07_0.jpg',
+            //previewImageUrl: '',
+        };
+    } else {
+        // 送られて来たテキストの語尾を変えて送信
+        sendContent = {
+            contentType: 1,
+            toType: 1,
+            text: text + 'にゃんぺろ〜！',
+        };
+    }
 
     //ヘッダーを定義
     var headers = {
@@ -52,16 +68,7 @@ app.post('/callback', function(req, res) {
         to: to_array,
         toChannel: 1383378250, //固定
         eventType:'138311608800106203', //固定
-        content: {
-            messages: [
-                // テキスト
-                {
-                    contentType: 1,
-                    toType: 1,
-                    text: sendText,
-                },
-            ]
-        }
+        content: sendContent
     };
 
     //オプションを定義
