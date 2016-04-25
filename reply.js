@@ -33,9 +33,9 @@ replyService.reply = function(content) {
             contentType: 8,
             toType: 1,
             contentMetadata: {
-                STKID: 3,
-                STKPKGID: 332,
-                STKVER: 100
+                STKID: '424',
+                STKPKGID: '1',
+                STKVER: '100'
             },
         };
     } else {
