@@ -22,6 +22,9 @@ var client = exports;
  * @param isMulti 複数メッセージを同時に送るかどうか
  */
 client.sendMessage = function(to_array, content, isMulti) {
+    console.log(JSON.stringify(to_array));
+    console.log(JSON.stringify(content));
+
     // 固定の値を設定
     var eventType = '138311608800106203';
     if (isMulti) {
